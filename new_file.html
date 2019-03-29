@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.aa{
+			width: 650px;
+			height: 250px;
+			border: 1px solid red;
+			margin: 0 auto;
+			position: relative;
+		}
+		.aa .bb{
+			width: 650px;
+			height: 250px;
+			position: absolute;
+			display: block;
+		}
+		.aa .bb img{
+			width: 100%;
+			height: 100%;
+		}
+		.aa .cc{
+			width: 30px;
+			height: 70px;
+			position: absolute;
+			background:url(images/jquery-slider-theme.png);
+			background-position:-7px 0px;
+			top: 35%;
+			left: 0;
+			display: none;
+		}
+		.aa .dd{
+			width: 30px;
+			height: 80px;
+			position: absolute;
+			background:url(images/jquery-slider-theme.png);
+			background-position:-55px 0px;
+			right: 0;
+			top: 35%;
+			display: none;
+		}
+		.aa ul{
+			list-style: none;
+			position: absolute;
+			bottom: 15px;
+			right: 20px;
+		}
+		.aa ul li{
+			width: 15px;
+			height: 15px;
+			background: #333333;
+			float: left;
+			margin-left: 5px;
+		}
+		.aa .jj{
+			display: none;
+		}
+	</style>
+	<head>
+		<meta charset="UTF-8">
+		<title>段浩凯</title>
+	</head>
+	<body>
+		<div class="aa" id="aa">
+			<div class="bb"><img src="images/1.jpg"/></div>
+			<div class="bb jj"><img src="images/2.jpg"/></div>
+			<div class="bb jj"><img src="images/3.jpg"/></div>
+			<div class="bb jj"><img src="images/4.jpg"/></div>
+			<div class="bb jj"><img src="images/5.jpg"/></div>
+			<div class="bb jj"><img src="images/6.jpg"/></div>
+			<div class="bb jj"><img src="images/7.jpg"/></div>
+			<div class="cc" id="cc">
+			</div>
+			<div class="dd" id="dd">
+			</div>
+			<ul>
+				<li style="background: white;"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var aa=document.getElementById("aa")
+	var bb=document.getElementsByClassName("bb")
+	var cc=document.getElementById("cc")
+//	console.log(cc)
+	var dd=document.getElementById("dd")
+	var lis=aa.getElementsByTagName("li")
+	var num=0
+	cc.onclick=function(){
+		num--
+		if(num<0){
+			num=6
+		}
+		for(var i=0; i<lis.length; i++){
+			lis[i].style.background="#333333"
+			bb[i].style.display="none"
+		}
+		lis[num].style.background="white"
+		bb[num].style.display="block"
+	}
+	dd.onclick=function(){
+		num++
+		if(num>6){
+			num=0
+		}
+		for(var i=0; i<lis.length; i++){
+			lis[i].style.background="#333333"
+			bb[i].style.display="none"
+		}
+		lis[num].style.background="white"
+		bb[num].style.display="block"
+	}
+
+	for (var i=0; i<lis.length; i++) {
+		lis[i].ind=i;
+		lis[i].onclick=function(){
+			for (var j=0; j<lis.length; j++) {
+			lis[j].style.background="#333333"
+			bb[j].style.display="none"
+		}
+		lis[this.ind].style.background="white"
+		bb[this.ind].style.display="block"
+		num=this.ind
+	}
+	}
+	t=setInterval(function(){fn()},2000)
+	function fn(){
+		num++
+		if(num>6){
+			num=0
+		}
+		for(var i=0; i<lis.length; i++){
+			lis[i].style.background="#333333"
+			bb[i].style.display="none"
+		}
+		lis[num].style.background="white"
+		bb[num].style.display="block"
+	}
+	aa.onmouseover=function(){
+		clearInterval(t)
+		cc.style.display="block"
+		dd.style.display="block"
+	}
+	aa.onmouseout=function(){
+		t=setInterval(function(){fn()},2000)
+		cc.style.display="none"
+		dd.style.display="none"
+	}
+</script>
